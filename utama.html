@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DW Shortener</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- CDD Datatables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css">
+
+    <!-- CSS Bootstrap Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- primer1 terang = #8bc44c primer2 gelap = #045c34 sekunder = #00a54f CSS Local Public -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="row container-fluid full-height-container">
+        <!-- LEFT SECTION -->
+        <div class="col-lg-2 left-section">
+            <div class="row side-profile">
+                <div class="side-logo">
+                    <h3>DuWa Shortener</h3>
+                </div>
+                <div class="side-user">
+                    <img src="" alt="Avatar" class="user-avatar img-thumbnail">
+                    <h5></h5>
+                    <p></p>
+                </div>
+                <hr>
+            </div>
+            <div class="row side-navbar">
+                <div class="col-lg-2 h-100">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a target="_self" class="nav-link {{ $key == 'Dashboard' ? 'active' : '' }}"
+                            id="v-pills-home-tab" role="tab" href="/dashboard">Dashboard</a>
+                        <a target="_self" class="nav-link {{ $key == 'Links' ? 'active' : '' }}" role="tab"
+                            href="/links">Links</a>
+                        <a target="_self" class="nav-link {{ $key == 'Analytics' ? 'active' : '' }}"
+                            id="v-pills-messages-tab" role="tab" href="/analytics">Analytics</a>
+                        <a target="_self" class="nav-link {{ $key == 'Settings' ? 'active' : '' }}"
+                            id="v-pills-settings-tab" role="tab" href="/settings">Settings</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row side-footer">
+                <p>Template by Patrik - 2024</p>
+            </div>
+        </div>
+
+        <!-- RIGHT SECTION -->
+        <div class="col-lg-10 right-section bg-light">
+            <header class="row head-section align-items-center justify-content-center">
+                <div class="col-lg-2 nav align-items-center">
+                    <ul class="nav justify-content-lg-left">
+                        <li class="nav-item">
+                            <h3 class="nav-link active" href="#"></h3>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-10 navbar">
+                    <ul class="nav justify-content-end ml-auto">
+                        <li class="nav-item">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <i class="bi bi-bell-fill"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <button class="dropdown-item" type="button">Action</button>
+                                    <button class="dropdown-item" type="button">Another action</button>
+                                    <button class="dropdown-item" type="button">Something else here</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Upgrade</a>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-secondary">
+                                <i class="bi bi-moon-stars-fill"></i>
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout" tabindex="-1">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+
+            <section class="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group mt-4">
+                                <input type="text" class="form-control" id="search-input" placeholder="Cari...">
+                                <div class="input-group-append">
+                                    <button onclick="searchkeywords()" type="submit" id="search-button"
+                                        class="btn btn-info"> CARI
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Your links but with API</h5>
+                        <table id="example" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Long URL</th>
+                                    <th>Short URL</th>
+                                    <th>Created at</th>
+                                    <th style="width: 120px;">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="results">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous">
+        </script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDzwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#links-table').DataTable();
+        });
+    </script>
+    <script>
+        function searchkeywords() {
+            let query = $('#search-input').val();
+            console.log('Button clicked');
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/link/v1/search',
+                method: 'GET',
+                data: { keyword: query },
+                success: function (res) {
+                    $('#results').empty(); // Clear previous results
+                    if (res.success === true && query !== "") {
+                        res.data.forEach(function (item, index) {
+                            let card = `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td>${item.long_url}</td>
+                                    <td>duwa.id/${item.short_url ? item.short_url : 'Tidak tersedia'}</td>
+                                    <td>${item.created_at}</td>
+                                    <td>
+                                        <a href="/links/edit/${item.short_url}" class="btn btn-primary"><i
+                                                class="bi bi-pencil-square"></i></a>
+                                        <a href="/links/delete/${item.short_url}" class="btn btn-danger"><i
+                                                class="bi bi-trash"></i></a>
+                                    </td>
+                                </tr>
+                            `;
+                            $('#results').append(card);
+                        });
+                    } else {
+                        $('#results').html('<div class="col-md-12"><p class="text-center">Data Tidak Ditemukan</p></div>');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+    </script>
+    
+</body>
+
+</html>

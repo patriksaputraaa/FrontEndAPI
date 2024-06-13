@@ -1,0 +1,85 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous">
+        </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 py-4 bg-info">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group mt-4">
+                    <input type="text" class="form-control" id="search-input" placeholder="Cari...">
+                    <div class="input-group-append">
+                        <button onclick="searchkeywords()" type="submit" id="search-button" class="btn btn-info"> CARI
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row" id="results">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function searchkeywords() {
+            let query = $('#search-input').val();
+            console.log('Button clicked');
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/link/v1/search',
+                method: 'GET',
+                data: { keyword: query },
+                success: function(res) {
+                    $('#results').empty(); // Clear previous results
+                    if (res.success === true && query !== "") {
+                        res.data.forEach(function(item) {
+                            let card = `
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${item.short_url}</h5>
+                                            <h5 class="card-title">${item.long_url}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            $('#results').append(card);
+                        });
+                    } else {
+                        $('#results').html('<div class="col-md-12"><p class="text-center">Data Tidak Ditemukan</p></div>');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(error); // Log any errors to the console
+                }
+            });
+        }
+    </script>
+    
+
+
+</body>
+
+</html> -->

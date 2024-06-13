@@ -1,0 +1,143 @@
+html,
+body {
+    /* height: 100vh; */
+    margin: 0;
+    color: white;
+    overflow: hidden;
+}
+
+.full-height-container {
+    display: flex;
+    /* height: 100vh; */
+    margin: auto;
+}
+
+.left-section{
+    position: sticky;
+}
+
+.right-section{
+    overflow: auto;
+}
+.left-section,
+.right-section {
+    height: 100vh;
+    background-color: #00a54f;
+}
+
+body {
+    min-width: 100vh;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #045c34;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+hr{
+    display: block;
+    height: 1px;
+    width: 100%; /* Set the width to 100% */
+    border: 0;
+    border-top: 1px solid #ccc;
+    border-style: solid;
+    margin: 1em 0;
+    padding: 0;
+}
+
+a{
+    color: white;
+}
+
+h3{
+    padding: 0px;
+}
+
+html,
+body,
+.container-fluid {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.side-navbar {
+    height: 50%;
+    margin-top: -10px;
+    margin-left: -20px;
+    margin-bottom: -20px;
+}
+
+.side-logo {
+    padding: 20px;
+}
+
+.content {
+    padding: 20px;
+    color: black;
+}
+
+.navbar {
+    min-height: 70px;
+}
+
+.side-user{
+    padding-left: 20px;
+}
+
+.side-user p{
+    font-size: smaller;
+    margin-bottom: 2px;
+}
+
+.side-profile{
+    padding-bottom: 0%;
+    margin-bottom: 0%;
+}
+
+.side-footer {
+    margin-top: auto;
+    margin-left: 2px;
+}
+
+.card{
+    margin:5px;
+}
+
+.card a{
+    color: black;
+}
+
+#long-url-text{
+    width: 88%;
+    min-height: 36px;
+}
+
+.user-avatar{
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+.sub-header{
+    background-color: #00a54f;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+h5{
+    margin: 0px;
+}
+
+#upload_link{
+    text-decoration:none;
+}
+#upload{
+    display:none
+}
